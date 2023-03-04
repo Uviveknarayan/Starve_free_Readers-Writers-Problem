@@ -2,6 +2,7 @@
 Readers Writers Problem is a classic synchronization problem in Operating Systems. It involves readers and writers trying to read or edit a document simultaneously which can lead to one or more writers simultaneously modifying information could lead to errors in documents. So, here too like other problems, the three conditions should hold to solve the race condition namely, mutual exclusion, progress and bounded waiting.
 # Formulation of the problem
 There is a shared data between many users who perform reading and writing which could make the system faulty due to concurrency problems. So, we need to devise a ensure synchronization. Also, there are various solutions to this code in which the first readers writers solution, consists of starving the writers. The second Readers-Writers Problem gives priority to writers and the readers starve. In this repo, we are going to solve the readers writers problem such that both readers and writers don't starve.
+<pre>
 Shared data
     -File, Database etc
  Semaphore
@@ -11,6 +12,7 @@ Shared data
 Initially
       -enter=1,exit=1,write=1
       -rdcount=0 //keeps a track of readers reading presently
+      </pre>
 ## Pseudocode
 ```cpp
 typedef struct{
