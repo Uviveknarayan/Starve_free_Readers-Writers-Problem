@@ -11,6 +11,13 @@ wait(semaphore *s, int pid){
 s->val--;
 add pid to s->list;
 block();
+}
+
+signal(semaphore *s){
+s->val++;
+remove a process with process id prid from s->list;
+wakeup(prid);
+}
 ```
 # Reader's Code
 ```cpp
