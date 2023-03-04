@@ -62,3 +62,6 @@ signal(write)
 signal(enter)
 /*Remainder Section*/
 ```
+# Verification of solution
+# Mutual Exclusion
+The solution uses 3 semaphores to ensure mutual exclusion between writer-reader, writer-writer and rdcount variable modification.
