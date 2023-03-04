@@ -39,13 +39,13 @@ wakeup(prid);
 # Reader's Code
 ```cpp
 /*Starting Section*/
-wait(enter)
+wait(enter, prid)
 rdcount++;
 if(rdcount==1) wait(write);
 signal(enter)
 /*Critical Section*/
 //Perform Reading
-wait(exit)
+wait(exit, prid)
 rdcount--;
 if(rdcount==0) signal(write);
 signal(exit)
@@ -54,8 +54,8 @@ signal(exit)
 # Writer's Code
 ```cpp
 /*Starting Section*/
-wait(enter)
-wait(write)
+wait(enter, prid)
+wait(write, prid)
 //signal(enter) can also be written here instead of writing at the end.
 /*Critical Section*/
 //Perform Writing
@@ -71,3 +71,5 @@ Progress condition states that the solution should ensure that either of the two
 Here if any process wants to enter it can enter the critical section if no process is inside because the enter semaphor would be 1 in that case. So, no interested process is delayed while accessing the critical section. So we can say that the progress condition holds as well.
 # Bounded Waiting
 Bounded waiting as the name suggests is a condition that the solution should not make any process wait indefinitely and should be completed within a bounded time. This is satisfied since we use a list which is FIFO hence as soon as a process completes critical section the next process takes over. A process takes finite amount of time so, in a FIFO data structure it will have finite processes ahead of it thus giving a bounded waiting time.
+# No Busy Waiting
+Our solution is not only starve free but also eliminates the possibility of deadlocks. The busy waiting condition is caused by the while loop usage in wait semaphore usually, but we have used block and wakeup instead thus eliminating busy waiting too. Also, the semaphore is also allowed to be negative to facilitate addition to list which can be used later to wakeup a process.
