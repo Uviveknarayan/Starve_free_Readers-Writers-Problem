@@ -15,7 +15,7 @@ Initially
       </pre>
 ## Proposed Solution
 I aim to solve starvation through utilising the FIFO order instead of allowing either reader or writer to pass first. For this purpose each process calls wait(enter) but reader processes before writers processes can happen in parallel so for reader modify rdcount and signal(enter) so that next process enters. If it's a writer process it will have to wait until write semaphore is released which is released after all readers before it completed their critical section. If it's a reader then it again modifies the rdcount and signals enter and it too goes into critical section.
-The main difference here from Bounded Buffer being that readers can happen in parallel. So, while my writer's code resembles producer-consumer problem reader code is modified to get a starve free efficient solution.
+The main difference here from Bounded Buffer being that readers can happen in parallel. So, while my writer's code resembles producer-consumer problem reader code is modified to get a starve free efficient solution. My main ideas come from the first and second readers-writers subproblems solved by sir in the class.
 ## Pseudocode
 ```cpp
 typedef struct{
@@ -79,3 +79,4 @@ Our solution is not only starve free but also eliminates the possibility of dead
 There is no possibility of deadlock as no two processes will form a cycle in RAG as semaphores used restrict entry into critical section and take care of no deadlocks.
 ## Footnotes
 Operating System Concepts by Abraham Silberschatz, Galvin, Gagne
+Prof. Sateesh Kumar Peddoju's Process Synchronization Slides
