@@ -78,5 +78,5 @@ Our solution is not only starve free but also eliminates the possibility of dead
 ### No Deadlock
 There is no possibility of deadlock as no two processes will form a cycle in RAG as semaphores used restrict entry into critical section and take care of no deadlocks.
 ## Footnotes
-Operating System Concepts by Abraham Silberschatz, Galvin, Gagne
+Operating System Concepts by Abraham Silberschatz, Peter B. Galvin, Gerg Gagne
 Prof. Sateesh Kumar Peddoju's Process Synchronization Slides
