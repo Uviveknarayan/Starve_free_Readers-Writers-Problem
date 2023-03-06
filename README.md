@@ -14,7 +14,7 @@ Initially
       -rdcount=0 //keeps a track of readers reading presently
       </pre>
 ## Proposed Solution
-I aim to solve starvation through utilising the FIFO order instead of allowing either reader or writer to pass first. For this purpose each process calls wait(enter) but reader processes before writers processes can happen in parallel so for reader modify rdcount and signal(enter) so that next process enters. If it's a writer process it will have to wait until write semaphore is released which is released after all readers before it completed their critical section. If it's a reader then it again modifies the rdcount and signals enter and it too goes into critical section.
+The classical solution either leads to starvation of reader or writer and was discussed in class. I aim to solve starvation through utilising the FIFO order instead of allowing either reader or writer to pass first. For this purpose each process calls wait(enter) but reader processes before writers processes can happen in parallel so for reader modify rdcount and signal(enter) so that next process enters. If it's a writer process it will have to wait until write semaphore is released which is released after all readers before it completed their critical section. If it's a reader then it again modifies the rdcount and signals enter and it too goes into critical section.
 The main difference here from Bounded Buffer being that readers can happen in parallel. So, while my writer's code resembles producer-consumer problem reader code is modified to get a starve free efficient solution. My main ideas come from the first and second readers-writers subproblems solved by sir in the class.
 ## Pseudocode
 ```cpp
