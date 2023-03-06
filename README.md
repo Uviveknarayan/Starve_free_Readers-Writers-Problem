@@ -13,6 +13,9 @@ Initially
       -enter=1,exit=1,write=1
       -rdcount=0 //keeps a track of readers reading presently
       </pre>
+## Proposed Solution
+I aim to solve starvation through utilising the FIFO order instead of allowing either reader or writer to pass first. For this purpose each process calls wait(enter) but reader processes before writers processes can happen in parallel so for reader modify rdcount and signal(enter) so that next process enters. If it's a writer process it will have to wait until write semaphore is released which is released after all readers before it completed their critical section. If it's a reader then it again modifies the rdcount and signals enter and it too goes into critical section.
+The main difference here from Bounded Buffer being that readers can happen in parallel. So, while my writer's code resembles producer-consumer problem reader code is modified to get a starve free efficient solution.
 ## Pseudocode
 ```cpp
 typedef struct{
@@ -72,5 +75,7 @@ Here if any process wants to enter it can enter the critical section if no proce
 Bounded waiting as the name suggests is a condition that the solution should not make any process wait indefinitely and should be completed within a bounded time. This is satisfied since we use a list which is FIFO hence as soon as a process completes critical section the next process takes over. A process takes finite amount of time so, in a FIFO data structure it will have finite processes ahead of it thus giving a bounded waiting time.
 ### No Busy Waiting
 Our solution is not only starve free but also eliminates the possibility of deadlocks. The busy waiting condition is caused by the while loop usage in wait semaphore usually, but we have used block and wakeup instead thus eliminating busy waiting too. Also, the semaphore is also allowed to be negative to facilitate addition to list which can be used later to wakeup a process.
+### No Deadlock
+There is no possibility of deadlock as no two processes will form a cycle in RAG as semaphores used restrict entry into critical section and take care of no deadlocks.
 ## Footnotes
 Operating System Concepts by Abraham Silberschatz, Galvin, Gagne
