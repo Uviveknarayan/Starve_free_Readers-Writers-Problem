@@ -58,11 +58,10 @@ signal(exit)
 /*Starting Section*/
 wait(enter, prid)
 wait(write, prid)
-signal(enter)
 /*Critical Section*/
 //Perform Writing
 signal(write)
-//signal(enter) can also be written here instead of writing after wait(write, prid).     
+signal(enter)     
 /*Remainder Section*/
 ```
 ## Verification of solution
